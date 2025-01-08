@@ -6,7 +6,7 @@
 /*   By: gkryszcz <gkryszcz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:56 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/01/08 14:43:39 by gkryszcz         ###   ########.fr       */
+/*   Updated: 2025/01/08 15:34:36 by gkryszcz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	define_format(const char *ptr,int *count,va_list args)
 	// if (*ptr == 'p')
 	// 	count += ft_print_pointer(va_arg(args, void *));
 	if (*ptr == 'd' || *ptr == 'i')
+	{
+		printf("xd");
 		count += ft_putnbr_fd(va_arg(args, int));
+	}
 	// if (*ptr == 'u')
 	// 	count += ft_print_unsigned(va_arg(args, unsigned int));
 	// if (*ptr == 'x')
@@ -40,25 +43,28 @@ int	ft_printf(const char *fmt, ...)
 
 	count = 0;
 	va_start(ap, fmt);
-	while (fmt[count]!= '\0')
+	while (*fmt)
 	{
-		if (fmt[count] == '%')
+		// printf("%c",*fmt);
+		if (*fmt == '%')
 		{
 			count++;
-			printf("%d XD",va_arg(ap,int));
-			//define_format(fmt,&count, ap);
+			define_format(fmt,&count, ap);
 		}
 		else
 		{
 			ft_putchar_fd(*fmt, 1);
 		}
+		fmt++;
 		count++;
 	}
 	va_end(ap);
+	return count;
 }
 
 int	main(void)
 {
-	ft_printf("%d SAD", "42");
+	ft_printf("%d SAD", 42);
+	// printf("%d XD",42);
 	return (0);
 }
