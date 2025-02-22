@@ -2,26 +2,18 @@ NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = ft_printf.c
+SRC = ft_printf.c ft_utils.c ft_utils2.c
 OBJ = ${SRC:.c=.o}
-
-LIBFT_DIR = libft
-LIBFT = ${LIBFT_DIR}/libft.a
 
 all: ${NAME}
 
-${NAME}: ${OBJ} ${LIBFT}
-	ar rcs ${NAME} ${OBJ} ${LIBFT}
-
-${LIBFT}:
-	make -C ${LIBFT_DIR}
+${NAME}: ${OBJ} 
+	ar rcs ${NAME} ${OBJ} 
 
 clean:
 	rm -f ${OBJ}
-	make -C ${LIBFT_DIR} clean
 
 fclean: clean
 	rm -f ${NAME}
-	make -C ${LIBFT_DIR} fclean
 
 re: fclean all
