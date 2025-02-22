@@ -6,7 +6,7 @@
 /*   By: gkryszcz <gkryszcz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:27:15 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/02/22 11:54:39 by gkryszcz         ###   ########.fr       */
+/*   Updated: 2025/02/22 12:27:23 by gkryszcz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,13 @@ char	*ft_itoa(int n)
 	}
 	write_to_str(str, i, len, tmp);
 	return (str);
+}
+
+void	ft_putnbrhex_fd(int n, int fd)
+{
+	char	*str;
+
+	str = ft_itoa(n);
+	ft_putstr_fd(str, fd);
+	free(str);
 }
