@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkryszcz <gkryszcz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrzesiek <ggrzesiek@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:14:20 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/02/22 11:54:52 by gkryszcz         ###   ########.fr       */
+/*   Updated: 2025/03/03 18:26:37 by ggrzesiek        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,4 @@ void	ft_bzero(void *s, size_t n)
 		n--;
 		p++;
 	}
-}
-
-int	sign_check(long int *tmp)
-{
-	if (*tmp < 0)
-	{
-		*tmp = (*tmp) * -1;
-		return (1);
-	}
-	return (0);
 }

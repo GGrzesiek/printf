@@ -3,28 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkryszcz <gkryszcz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrzesiek <ggrzesiek@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:27:15 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/02/22 12:27:23 by gkryszcz         ###   ########.fr       */
+/*   Updated: 2025/03/03 18:45:12 by ggrzesiek        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	num_len(long int n)
+int	num_len(long int n, int base)
 {
 	int	len;
 
-	len = 1;
-	while (n >= 10)
+	len = 0;
+	if (n == 0)
+		return (1);
+	if(n < 0)
+	{
+		n = -n;
+		len++;
+	}
+	while (n >= base)
 	{
 		len++;
-		n = n / 10;
+		n = n / base;
 	}
 	return (len);
 }
 
+int	ft_putnbr_hex_fd(unsigned n,int sign, int fd)
+{
+	char	*chars;
+	int	count;
+
+	count = 0;
+	chars = "0123456789abcdef";
+	if(sign)
+		chars = "0123456789ABCDEF";
+	if (n >= 16)
+	{
+		ft_putnbr_hex_fd(n / 16, sign, fd);
+		ft_putchar_fd(chars[n % 16], fd);
+		count++;
+	}
+	else
+	{
+		ft_putchar_fd(chars[n], fd);
+		count++;
+	}
+	return (count);	
+}
 long int	power(long int nb, int pow)
 {
 	int	i;
@@ -58,44 +87,51 @@ void	write_to_str(char *str, int i, int len, long int nb)
 	}
 }
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd)
 {
-	char	*str;
+	long nb;
+	int count;
 
-	str = ft_itoa(n);
-	ft_putstr_fd(str, fd);
-	free(str);
+	nb = n;
+	count = 0;
+	if(nb < 0)
+	{
+		ft_putchar_fd('-', fd);
+		nb = -nb;
+		count++;
+	}
+	if(nb >= 10)
+	{
+		ft_putnbr_fd(nb / 10, fd);
+		ft_putchar_fd(nb % 10 + '0', fd);
+		count++;
+	}
+	else
+	{
+		ft_putchar_fd(nb + '0', fd);
+		count++;
+	}
+	return (count);
 }
-
+/*
 char	*ft_itoa(int n)
 {
 	long int	tmp;
 	int			i;
 	int			len;
-	int			is_neg;
 	char		*str;
 
 	i = 0;
 	tmp = n;
-	is_neg = sign_check(&tmp);
-	len = (num_len(tmp) + is_neg);
+	len = (num_len(tmp,10));
 	str = (char *)ft_calloc((sizeof(char) * (len + 1)), sizeof(char));
 	if (!str)
 		return (NULL);
-	if (is_neg)
+	if (n < 0)
 	{
 		str[i] = '-';
 		i++;
 	}
 	write_to_str(str, i, len, tmp);
 	return (str);
-}
-
-void	ft_putnbrhex_fd(int n, int fd)
-{
-	char	*str;
-
-	str = ft_itoa(n);
-	ft_putstr_fd(str, fd);
-	free(str);
-}
+} */
