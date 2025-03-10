@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggrzesiek <ggrzesiek@student.42.fr>        +#+  +:+       +#+        */
+/*   By: gkryszcz <gkryszcz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:56 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/03/10 14:51:52 by ggrzesiek        ###   ########.fr       */
+/*   Updated: 2025/03/10 15:33:46 by gkryszcz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,54 +23,59 @@ size_t	ft_strlen(const char *s)
 	}
 	return (i);
 }
+
 int	handle_numbers(const char *ptr, va_list args)
 {
-	if(*ptr == 'd' || *ptr == 'i')
+	int				num;
+	unsigned int	num;
+
+	if (*ptr == 'd' || *ptr == 'i')
 	{
-		int num = va_arg(args, int);
+		num = va_arg(args, int);
 		ft_putnbr_fd(num, 1);
-		return ((num_len(num,10)));
+		return ((num_len(num, 10)));
 	}
-	if(*ptr == 'u')
+	if (*ptr == 'u')
 	{
-		unsigned int num = va_arg(args, unsigned int);
+		num = va_arg(args, unsigned int);
 		ft_putnbr_uns_fd(num, 1);
-		return ((num_len(num,10)));
+		return ((num_len(num, 10)));
 	}
-	return 0;
+	return (0);
 }
+
 int	handle_hex(const char *ptr, va_list args)
 {
-	void *ptr_arg;	
-	unsigned int num;
-	
-	if(*ptr == 'p')
+	void			*ptr_arg;
+	unsigned int	num;
+
+	if (*ptr == 'p')
 	{
 		ptr_arg = va_arg(args, void *);
-		if(ptr_arg == NULL)
+		if (ptr_arg == NULL)
 		{
 			ft_putstr_fd("(nil)", 1);
 			return (5);
 		}
 		ft_putstr_fd("0x", 1);
-		return ((ft_putnbr_hex_fd((unsigned long)ptr_arg, 0, 1)+2));
+		return ((ft_putnbr_hex_fd((unsigned long)ptr_arg, 0, 1) + 2));
 	}
-	if(*ptr == 'x')
+	if (*ptr == 'x')
 	{
 		num = va_arg(args, unsigned int);
 		return (ft_putnbr_hex_fd(num, 0, 1));
 	}
-	if(*ptr == 'X')
+	if (*ptr == 'X')
 	{
 		num = va_arg(args, unsigned int);
 		return (ft_putnbr_hex_fd(num, 1, 1));
 	}
-	return 0;
+	return (0);
 }
 
 int	define_format(const char *ptr, va_list args)
 {
-	char *arg;
+	char	*arg;
 
 	if (*ptr == 'c')
 	{
@@ -81,25 +86,25 @@ int	define_format(const char *ptr, va_list args)
 	if (*ptr == 's')
 	{
 		arg = va_arg(args, char *);
-		if(!arg)
+		if (!arg)
 			arg = "(null)";
 		ft_putstr_fd(arg, 1);
 		return (ft_strlen(arg));
 	}
 	if (*ptr == 'd' || *ptr == 'i' || *ptr == 'u')
-		return (handle_numbers(ptr,args));
+		return (handle_numbers(ptr, args));
 	if (*ptr == '%')
 	{
 		ft_putchar_fd('%', 1);
 		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 int	ft_printf(const char *fmt, ...)
 {
-	va_list ap;
-	int count;
+	va_list	ap;
+	int		count;
 
 	count = 0;
 	va_start(ap, fmt);
