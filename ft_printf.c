@@ -6,7 +6,7 @@
 /*   By: ggrzesiek <ggrzesiek@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:56 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/03/10 08:02:42 by ggrzesiek        ###   ########.fr       */
+/*   Updated: 2025/03/10 12:51:51 by ggrzesiek        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int handle_numbers(const char *ptr, va_list args)
 }
 int handle_hex(const char *ptr, va_list args)
 {
-	void *ptr_arg;
+	void *ptr_arg;	
 	unsigned int num;
 	
 	if(*ptr == 'p')
@@ -53,7 +53,7 @@ int handle_hex(const char *ptr, va_list args)
 			return (5);
 		}
 		ft_putstr_fd("0x", 1);
-		return (ft_putnbr_hex_fd((unsigned long)ptr_arg, 0, 1));
+		return ((ft_putnbr_hex_fd((uintptr_t)ptr_arg, 0, 1)+2));
 	}
 	if(*ptr == 'x')
 	{

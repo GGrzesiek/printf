@@ -6,7 +6,7 @@
 /*   By: ggrzesiek <ggrzesiek@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:27:15 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/03/10 08:07:40 by ggrzesiek        ###   ########.fr       */
+/*   Updated: 2025/03/10 13:39:35 by ggrzesiek        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	num_len(long int n, int base)
 	return (len);
 }
 
-int	ft_putnbr_hex_fd(unsigned n,int sign, int fd)
+int	ft_putnbr_hex_fd(unsigned long n,int sign, int fd)
 {
 	char	*chars;
 	int	count;
@@ -98,43 +98,3 @@ void	ft_putnbr_uns_fd(unsigned int n, int fd)
 	else
 		ft_putchar_fd((n + '0'), fd);
 }
-
-/*
-char	*ft_itoa(int n)
-{
-	long int	tmp;
-	int			i;
-	int			len;
-	char		*str;
-
-	i = 0;
-	tmp = n;
-	len = (num_len(tmp,10));
-	str = (char *)ft_calloc((sizeof(char) * (len + 1)), sizeof(char));
-	if (!str)
-		return (NULL);
-	if (n < 0)
-	{
-		str[i] = '-';
-		i++;
-	}
-	write_to_str(str, i, len, tmp);
-	return (str);
-} 
-void	write_to_str(char *str, int i, int len, long int nb)
-{
-	long int	singl_dig;
-	int			j;
-
-	j = 0;
-	while (len > i)
-	{
-		singl_dig = nb % power(10, j);
-		nb -= singl_dig;
-		while (singl_dig >= 10)
-			singl_dig /= 10;
-		str[len - 1] = singl_dig + '0';
-		len--;
-		j++;
-	}
-} */
