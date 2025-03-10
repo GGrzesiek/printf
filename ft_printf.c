@@ -6,15 +6,15 @@
 /*   By: ggrzesiek <ggrzesiek@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:56 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/03/10 12:51:51 by ggrzesiek        ###   ########.fr       */
+/*   Updated: 2025/03/10 14:51:52 by ggrzesiek        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -23,7 +23,7 @@ size_t ft_strlen(const char *s)
 	}
 	return (i);
 }
-int handle_numbers(const char *ptr, va_list args)
+int	handle_numbers(const char *ptr, va_list args)
 {
 	if(*ptr == 'd' || *ptr == 'i')
 	{
@@ -39,7 +39,7 @@ int handle_numbers(const char *ptr, va_list args)
 	}
 	return 0;
 }
-int handle_hex(const char *ptr, va_list args)
+int	handle_hex(const char *ptr, va_list args)
 {
 	void *ptr_arg;	
 	unsigned int num;
@@ -53,7 +53,7 @@ int handle_hex(const char *ptr, va_list args)
 			return (5);
 		}
 		ft_putstr_fd("0x", 1);
-		return ((ft_putnbr_hex_fd((uintptr_t)ptr_arg, 0, 1)+2));
+		return ((ft_putnbr_hex_fd((unsigned long)ptr_arg, 0, 1)+2));
 	}
 	if(*ptr == 'x')
 	{
@@ -68,7 +68,7 @@ int handle_hex(const char *ptr, va_list args)
 	return 0;
 }
 
-int define_format(const char *ptr, va_list args)
+int	define_format(const char *ptr, va_list args)
 {
 	char *arg;
 
@@ -96,7 +96,7 @@ int define_format(const char *ptr, va_list args)
 	return 0;
 }
 
-int ft_printf(const char *fmt, ...)
+int	ft_printf(const char *fmt, ...)
 {
 	va_list ap;
 	int count;

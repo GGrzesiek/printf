@@ -6,7 +6,7 @@
 /*   By: ggrzesiek <ggrzesiek@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:33:25 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/03/10 13:33:34 by ggrzesiek        ###   ########.fr       */
+/*   Updated: 2025/03/10 14:21:40 by ggrzesiek        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdarg.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdint.h>
 
 int		ft_printf(const char *format, ...);
 void	ft_putchar_fd(char c, int fd);
