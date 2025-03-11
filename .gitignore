@@ -6,3 +6,4 @@ libft/*.a
 libft/*.o
 .vscode
 test.c
+printfTester
