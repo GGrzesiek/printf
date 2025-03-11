@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gkryszcz <gkryszcz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggrzesiek <ggrzesiek@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 11:28:56 by gkryszcz          #+#    #+#             */
-/*   Updated: 2025/03/10 15:33:46 by gkryszcz         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:53:25 by ggrzesiek        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	ft_strlen(const char *s)
 int	handle_numbers(const char *ptr, va_list args)
 {
 	int				num;
-	unsigned int	num;
+	unsigned int	unum;
 
 	if (*ptr == 'd' || *ptr == 'i')
 	{
@@ -37,9 +37,9 @@ int	handle_numbers(const char *ptr, va_list args)
 	}
 	if (*ptr == 'u')
 	{
-		num = va_arg(args, unsigned int);
-		ft_putnbr_uns_fd(num, 1);
-		return ((num_len(num, 10)));
+		unum = va_arg(args, unsigned int);
+		ft_putnbr_uns_fd(unum, 1);
+		return ((num_len(unum, 10)));
 	}
 	return (0);
 }
